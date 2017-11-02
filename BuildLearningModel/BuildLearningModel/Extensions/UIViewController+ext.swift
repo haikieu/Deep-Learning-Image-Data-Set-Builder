@@ -11,14 +11,14 @@ import UIKit
 
 public extension UIViewController {
     
-    public func dimissLoading(completion: (()->Void)?) {
+    public func dismissLoading(completion: (()->Void)?) {
         guard let vc = self.presentedViewController as? LoadingViewController else { return }
         vc.dismiss(animated: false, completion: completion)
     }
     
-    public func showLoading(_ text: String?, completion: (()->Void)?) {
+    public func showLoading(_ text: String?, completion: (()->Void)? ) {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoadingViewController") as? LoadingViewController else {
-            print("Cannot show loading vc")
+            log("Cannot show loading vc")
             return
         }
         if let loadingText = text, loadingText.isEmpty == false {

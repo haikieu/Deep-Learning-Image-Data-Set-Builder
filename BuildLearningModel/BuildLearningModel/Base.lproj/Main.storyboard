@@ -72,7 +72,7 @@
                                                     <segue destination="Vu6-aC-x6Z" kind="presentation" identifier="openModeVC" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="BDG-pL-0AI"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="Tags" id="syI-Nj-Gli">
+                                            <barButtonItem title="Tag" id="syI-Nj-Gli">
                                                 <connections>
                                                     <segue destination="DCt-fn-Vm2" kind="presentation" identifier="openTagVC" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="oe1-85-6fd"/>
                                                 </connections>
@@ -363,6 +363,7 @@
         <!--Tags View Controller-->
         <scene sceneID="f6v-tu-Jf2">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5Q-2q-Wtu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="xtm-EJ-iHd" customClass="TagsViewController" customModule="BuildLearningModel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aWN-7B-40L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -392,7 +393,6 @@
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="openCaptureVC" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="6i4-Gz-jyX"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5Q-2q-Wtu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-984.79999999999995" y="29.23538230884558"/>
         </scene>

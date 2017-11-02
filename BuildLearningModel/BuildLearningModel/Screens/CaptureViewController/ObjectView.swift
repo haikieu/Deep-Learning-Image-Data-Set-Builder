@@ -76,7 +76,7 @@ class ObjectView : UIView {
             currentHeight = self.bounds.size.height
             return
         case .changed:
-            print("pinch >>> scale \(scale)")
+            log("pinch >>> scale \(scale)")
             self.bounds = CGRect(x: 0, y: 0, width: currentWidth * scale, height: currentHeight * scale)
             self.center = currentCenter
             return
@@ -96,7 +96,7 @@ class ObjectView : UIView {
     
     var beginPoint : CGPoint = .zero
     @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
-        print("pan gesture = \(gesture.state.rawValue)")
+        log("pan gesture = \(gesture.state.rawValue)")
         guard let parent = self.superview else { return }
         
         let newPoint = gesture.translation(in: parent)
@@ -149,7 +149,7 @@ class ObjectView : UIView {
             originalCenter = self.center
             break
         case .changed:
-            print("sizePoint \(sizePoint)  location \(location)")
+            log("sizePoint \(sizePoint)  location \(location)")
             self.bounds = CGRect(x: 0, y: 0, width: originalSize.width + location.x, height: originalSize.height + location.y)
             self.center = originalCenter
             break
@@ -209,7 +209,7 @@ class ObjectView : UIView {
     }
     
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
-        print("tap gesture = \(gesture.state)")
+        log("tap gesture = \(gesture.state)")
         tapping = !tapping
         
         if tapping {

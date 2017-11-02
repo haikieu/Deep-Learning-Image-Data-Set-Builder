@@ -51,7 +51,7 @@ class Workspace {
                     }
                 }
             } catch {
-                print("load project >>> Cannot read dir properties")
+                log("load project >>> Cannot read dir properties")
                 mainQueue?.async {
                     completion?([])
                 }
@@ -87,20 +87,20 @@ class Project {
                 let urls = DocumentManager.shared.getURLContents(self.dirPath)
                 for (index,url) in urls.enumerated() {
                     if let isDirectory = try  url.resourceValues(forKeys: [URLResourceKey.isDirectoryKey]).isDirectory, isDirectory {
-                        print("load project >>> Add #\(index) tag \(url.lastPathComponent.removeUnderscore)")
+                        log("load project >>> Add #\(index) tag \(url.lastPathComponent.removeUnderscore)")
                         let tag = Tag(tagName: url.lastPathComponent.removeUnderscore, project: self)
                         self.tags.append(tag)
                     }
                 }
-                print("load project >>> Found \(urls.count), added \(self.tags.count) tags")
+                log("load project >>> Found \(urls.count), added \(self.tags.count) tags")
                 
             } catch {
-                print("load project >>> Exception, cannot load project")
+                log("load project >>> Exception, cannot load project")
                 mainQueue?.async { completion?(false) }
                 return
             }
             
-            print("load project >>> Completed loading, then invoke callback")
+            log("load project >>> Completed loading, then invoke callback")
             mainQueue?.async { completion?(true) }
         }
     }
@@ -130,8 +130,17 @@ class Tag {
      
     }
     
-    func createFile(_ name: String) -> File {
-        return File(fileName: name, tag: self)
+    func createRawFile(_ image: UIImage, name: String) -> RawFile {
+        return RawFile(image: image, name: name, tag: self)
+    }
+    
+    func rename(to newName: String, completion: ((Bool)->Void)? = nil) {
+        DocumentManager.shared.rename(dirPath, newName: newName) { (success) in
+            
+            if success { self.tagName = newName }
+            mainQueue?.async { completion?(success) }
+        }
+        
     }
     
     static func getDirPath(_ tagName: String, projectName: String) -> URL {
@@ -139,13 +148,15 @@ class Tag {
     }
 }
 
-class File {
+class RawFile {
     weak var tag : Tag!
     var fileName : String
+    var image : UIImage!
     
-    init(fileName: String, tag: Tag) {
+    init(image: UIImage, name: String, tag: Tag) {
+        self.image = image
         self.tag = tag
-        self.fileName = fileName
+        self.fileName = name
     }
 }
 
@@ -166,25 +177,46 @@ class DocumentManager {
         return getDirPathForProject(projectName).appendingPathComponent(tagName.removeSpaces, isDirectory: true)
     }
     
-    func checkDirPath(_ dirPath: URL) -> Bool {
+    func checkExisting(_ dirPath: URL) -> Bool {
         var isDir : ObjCBool = false
         let isExist = FileManager.default.fileExists(atPath: dirPath.relativePath, isDirectory: &isDir)
         if isExist && isDir.boolValue == true {
-            print("document >>> Found dir \(dirPath.relativePath)")
+            log("dm >>> Found dir \(dirPath.relativePath)")
             return true
         } else {
-            print("document >>> Not found dir \(dirPath.relativePath)")
+            log("dm >>> Not found dir \(dirPath.relativePath)")
             return false
         }
     }
     
     func createDirIfNeeded(_ dirPath: URL) {
-        guard checkDirPath(dirPath) == false else { return }
+        guard checkExisting(dirPath) == false else { return }
         do {
             try FileManager.default.createDirectory(atPath: dirPath.relativePath, withIntermediateDirectories: true, attributes: [:])
-            print("document >>> Creare dir \(dirPath.relativePath)")
+            log("dm >>> Creare dir \(dirPath.relativePath)")
         } catch {
-            print("exc >>> Error when create dir \(dirPath.relativePath)")
+            log("dm >>> Error when create dir \(dirPath.relativePath)")
+        }
+    }
+    
+    
+    
+    func rename(_ dirPath: URL, newName: String, completion: ((Bool)->Void)? = nil) {
+        guard dirPath.isFileURL else { log("url not valid with \(dirPath)"); return }
+        
+        let newDirPath = URL(fileURLWithPath: dirPath.relativePath).deletingLastPathComponent().appendingPathComponent(newName, isDirectory: true)
+        
+        writingQueue.async {
+            do {
+                try FileManager.default.moveItem(at: dirPath, to: newDirPath)
+//                try FileManager.default.removeItem(at: dirPath)
+            } catch {
+                log("dm >>> rename is failed")
+                completion?(false)
+                return
+            }
+            log("dm >>> rename success to \(newDirPath.relativePath)")
+            completion?(true)
         }
     }
     
@@ -195,7 +227,7 @@ class DocumentManager {
             let urls = try FileManager.default.contentsOfDirectory(at: dirPath, includingPropertiesForKeys: properties, options: .skipsHiddenFiles)
             return urls
         } catch {
-            print("exc >>> Error when count files / dirs")
+            log("dm >>> Error when count files / dirs")
         }
         return []
     }
@@ -211,7 +243,7 @@ class DocumentManager {
         
         do {try data.write(to: path, options: .atomicWrite) }
         catch {
-            print("exc >>> Exception while saving file")
+            log("dm >>> Exception while saving file")
         }
     }
     

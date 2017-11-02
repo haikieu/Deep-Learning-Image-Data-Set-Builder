@@ -20,7 +20,7 @@ open class ContainerView : UIView {
     }
     
     @IBAction func tapOnObjectView(_ sender: Any) {
-        print("tap on object view")
+        log("tap on object view")
     }
     
     @IBOutlet weak var boundaryView: UIView!

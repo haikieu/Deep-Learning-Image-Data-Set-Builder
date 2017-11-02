@@ -35,7 +35,7 @@ class TagsViewController : BaseViewController {
         showLoading("Loading tags...") {
             self.project.loadTags({ (success) in
                 self.tableView.reloadData()
-                self.dimissLoading(completion: {})
+                self.dismissLoading(completion: {})
             })
         }
     }

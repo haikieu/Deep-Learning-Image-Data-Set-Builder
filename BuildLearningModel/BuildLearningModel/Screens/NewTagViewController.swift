@@ -25,7 +25,7 @@ class NewTagViewController: UIViewController {
             if let tagName = self.textField.text, tagName.isEmpty == false, let projectName = self.delegate?.askForProject().projectName, projectName.isEmpty == false {
                 
                 let dirPath : URL = Tag.getDirPath(tagName, projectName: projectName)
-                if DocumentManager.shared.checkDirPath(dirPath) {
+                if DocumentManager.shared.checkExisting(dirPath) {
                     //Duplicate, cannot add
                     self.alert("Duplicated", message: "This tag is used, please try another one", action: { (_) in
                         self.textField.text = ""

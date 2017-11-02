@@ -23,7 +23,7 @@ class CameraViewController: UIViewController {
     weak var tag : Tag!
     
     @IBAction func tapOnObjectView(_ sender: Any) {
-        print("tap on object view")
+        log("tap on object view")
     }
     @IBOutlet var containerView: ContainerView!
     @IBOutlet weak var sceneView: ARSCNView!
@@ -252,7 +252,7 @@ extension CameraViewController : ARSessionDelegate {
 //                tracking = true
 //                try self.visionSequenceHandler.perform([request], on: pixelBuffer)
 //            } catch {
-//                print("Throws: \(error)")
+//                log("Throws: \(error)")
 //
 //                self.containerView.objectView.layer.borderColor = UIColor.red.cgColor
 //                tracking = false

@@ -23,7 +23,7 @@ class ProjectsViewController : UIViewController {
                 self.projects.removeAll()
                 self.projects += projects
                 self.tableView.reloadData()
-                self.dimissLoading(completion: {})
+                self.dismissLoading(completion: {})
             })
         }
         

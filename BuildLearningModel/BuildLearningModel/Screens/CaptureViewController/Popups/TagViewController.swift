@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol TagDelegate : class {
-    func getCurrentTagName() -> String?
+    func getCurrentTag() -> Tag
     func didSetTagName(_ tagName: String)
 }
 
@@ -30,13 +30,29 @@ class TagViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tagField.text = delegate?.getCurrentTagName() ?? ""
+        tagField.text = delegate?.getCurrentTag().tagName
     }
     
     @IBAction func setTag(_ sender: Any) {
-        self.dismiss(animated: true) {
-            self.delegate?.didSetTagName(self.tagField.text ?? "")
+        
+        self.showLoading("Rename to \(self.tagField.text!)") {
+            
+            self.rename() { (success) in
+                if success {
+                    self.delegate?.didSetTagName(self.tagField.text!)
+                }
+                self.dismissLoading(completion: nil)
+                self.dismiss(animated: false, completion: nil)
+            }
         }
+    }
+    
+    private func rename(_ completion: ((Bool)->Void)? = nil) {
+        guard let newName = tagField.text, newName.isEmpty != true else { return }
+        guard let tag = self.delegate?.getCurrentTag() else { return }
+        guard newName != tag.tagName else { return }
+        
+        tag.rename(to: newName, completion: completion)
     }
     
     lazy var tapGesture : UITapGestureRecognizer = {

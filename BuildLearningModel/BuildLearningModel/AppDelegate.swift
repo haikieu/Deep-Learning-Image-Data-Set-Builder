@@ -9,8 +9,6 @@
 import UIKit
 import ARKit
 
-var workingProject : Project = Project(projectName: "DataModel")
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

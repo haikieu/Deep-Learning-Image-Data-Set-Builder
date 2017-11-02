@@ -32,13 +32,13 @@ extension CameraViewController : ModeDelegate {
 }
 
 extension CameraViewController : TagDelegate {
-    func getCurrentTagName() -> String? {
-        return tag.tagName
+    func getCurrentTag() -> Tag {
+        return tag
     }
     
     func didSetTagName(_ tagName: String) {
         //TODO: rename tag folder
-//        containerView.objectTagLabel.text = tagName
+        containerView.objectTagLabel.text = tagName
     }
 }
 

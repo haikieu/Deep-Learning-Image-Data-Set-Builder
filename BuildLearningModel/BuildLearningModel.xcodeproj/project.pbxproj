@@ -29,6 +29,7 @@
 		469B0F4B1F9AE2E200E0CBDD /* CameraViewController.others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469B0F4A1F9AE2E200E0CBDD /* CameraViewController.others.swift */; };
 		469B0F4F1F9BC2B300E0CBDD /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469B0F4E1F9BC2B300E0CBDD /* ContainerView.swift */; };
 		46BE3E891FAAEB6B00916A47 /* UIApplication+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE3E881FAAEB6B00916A47 /* UIApplication+ext.swift */; };
+		46BE3E8B1FAAEC8500916A47 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE3E8A1FAAEC8500916A47 /* Log.swift */; };
 		46EE5F021F9BC4EE00AF4634 /* TargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469B0F4C1F9AEBD600E0CBDD /* TargetView.swift */; };
 		46F5B04F1FA9A3CB0019FA34 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5B04E1FA9A3CB0019FA34 /* LoadingViewController.swift */; };
 		46F5B0511FA9AD2C0019FA34 /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5B0501FA9AD2C0019FA34 /* NewProjectViewController.swift */; };
@@ -60,6 +61,7 @@
 		469B0F4C1F9AEBD600E0CBDD /* TargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetView.swift; sourceTree = "<group>"; };
 		469B0F4E1F9BC2B300E0CBDD /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		46BE3E881FAAEB6B00916A47 /* UIApplication+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+ext.swift"; sourceTree = "<group>"; };
+		46BE3E8A1FAAEC8500916A47 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		46F5B04E1FA9A3CB0019FA34 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		46F5B0501FA9AD2C0019FA34 /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +150,7 @@
 			children = (
 				375249B41FAA9CFD00AC1D77 /* BaseViewController.swift */,
 				4698E54E1FA98F1D00DD4FE4 /* DocumentManager.swift */,
+				46BE3E8A1FAAEC8500916A47 /* Log.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46616E911FA9B05C008CD20C /* ProjectsViewController.swift in Sources */,
+				46BE3E8B1FAAEC8500916A47 /* Log.swift in Sources */,
 				4673EB4F1F9E278D0085358D /* CameraViewController.delegates.swift in Sources */,
 				469B0F4B1F9AE2E200E0CBDD /* CameraViewController.others.swift in Sources */,
 				4673EB4B1F9DA5190085358D /* CGRect+ext.swift in Sources */,
