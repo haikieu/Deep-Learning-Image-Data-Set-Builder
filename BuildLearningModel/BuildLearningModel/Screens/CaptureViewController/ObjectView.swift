@@ -77,7 +77,11 @@ class ObjectView : UIView {
             return
         case .changed:
             log("pinch >>> scale \(scale)")
-            self.bounds = CGRect(x: 0, y: 0, width: currentWidth * scale, height: currentHeight * scale)
+            var width = currentWidth * scale
+            var height = currentHeight * scale
+            //TODO: Won't let the size bigger than screen size
+            
+            self.bounds = CGRect(x: 0, y: 0, width: width, height: height)
             self.center = currentCenter
             return
         case .ended:
