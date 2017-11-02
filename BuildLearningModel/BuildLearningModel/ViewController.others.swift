@@ -9,7 +9,7 @@
 import Foundation
 import ARKit
 
-extension ViewController {
+extension CameraViewController {
     func startSession() { sceneView?.session.run(ARWorldTrackingConfiguration(), options: .resetTracking); sceneView?.delegate = self; sceneView.session.delegate = self }
     func pauseSession() { sceneView?.session.pause() }
     

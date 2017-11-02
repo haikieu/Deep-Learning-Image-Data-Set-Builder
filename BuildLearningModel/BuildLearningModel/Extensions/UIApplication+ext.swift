@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIApplication {
-    var rootViewController : ViewController? {
-        return UIApplication.shared.keyWindow?.rootViewController as? ViewController
+    var rootViewController : CameraViewController? {
+        return UIApplication.shared.keyWindow?.rootViewController as? CameraViewController
     }
 }

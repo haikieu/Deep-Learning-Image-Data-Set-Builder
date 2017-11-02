@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension ViewController : SizeDelegate {
+extension CameraViewController : SizeDelegate {
     func getCurrentSize() -> CGSize {
         return containerView.objectView.bounds.size
     }
@@ -25,13 +25,13 @@ extension ViewController : SizeDelegate {
     }
 }
 
-extension ViewController : ModeDelegate {
+extension CameraViewController : ModeDelegate {
     func didSetMode(_ isManual: Bool) {
         isManualCaptureMode = isManual
     }
 }
 
-extension ViewController : TagDelegate {
+extension CameraViewController : TagDelegate {
     func getCurrentTagName() -> String? {
         return tag.tagName
     }
@@ -42,7 +42,7 @@ extension ViewController : TagDelegate {
     }
 }
 
-extension ViewController : UIGestureRecognizerDelegate {
+extension CameraViewController : UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         let location = gestureRecognizer.location(in: self.containerView)
         if containerView.toolBar.frame.contains(location) {

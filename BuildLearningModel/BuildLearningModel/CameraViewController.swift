@@ -18,7 +18,7 @@ import Metal
 
 
 
-class ViewController: UIViewController {
+class CameraViewController: UIViewController {
 
     weak var tag : Tag!
     
@@ -203,7 +203,7 @@ class ViewController: UIViewController {
 
 
 
-extension ViewController : ARSessionDelegate {
+extension CameraViewController : ARSessionDelegate {
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         
@@ -263,7 +263,7 @@ extension ViewController : ARSessionDelegate {
 //    }
 }
 
-extension ViewController : ARSCNViewDelegate {
+extension CameraViewController : ARSCNViewDelegate {
     
 }
 

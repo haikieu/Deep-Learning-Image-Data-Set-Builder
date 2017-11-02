@@ -43,7 +43,7 @@ class TagsViewController : BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openNewTagVC", let vc = segue.destination as? NewTagViewController {
             vc.delegate = self
-        } else if segue.identifier == "openCaptureVC", let vc = segue.destination as? ViewController {
+        } else if segue.identifier == "openCaptureVC", let vc = segue.destination as? CameraViewController {
             let tag = project.tags[(tableView.indexPathForSelectedRow?.row)!]
             vc.tag = tag
         }
