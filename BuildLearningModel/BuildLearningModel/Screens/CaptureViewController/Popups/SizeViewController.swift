@@ -15,9 +15,8 @@ protocol SizeDelegate : class {
     func didCancelChangingSize()
 }
 
-class SizeViewController : UIViewController {
+class SizeViewController : PopupViewController {
     
-    @IBOutlet weak var container: UIView!
     var delegate : SizeDelegate?
     
     @IBOutlet weak var segment: UISegmentedControl!
@@ -72,7 +71,6 @@ class SizeViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.container.layer.cornerRadius = 20
         
         _ = tapGesture
     }

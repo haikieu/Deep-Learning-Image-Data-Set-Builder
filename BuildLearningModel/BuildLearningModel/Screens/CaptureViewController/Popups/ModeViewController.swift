@@ -13,8 +13,7 @@ protocol ModeDelegate : class {
     func didSetMode(_ isManual: Bool)
 }
 
-class ModeViewController : UIViewController {
-    @IBOutlet weak var container: UIView!
+class ModeViewController : PopupViewController {
     
     weak var delegate : ModeDelegate?
     
@@ -28,7 +27,6 @@ class ModeViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.container.layer.cornerRadius = 20
         _ = tapGesture
         
     }

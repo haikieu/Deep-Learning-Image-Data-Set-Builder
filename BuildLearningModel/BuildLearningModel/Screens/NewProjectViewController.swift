@@ -13,9 +13,8 @@ protocol NewProjectDelegate : class {
     func didAddNewProject(projectName: String)
 }
 
-class NewProjectViewController : UIViewController {
+class NewProjectViewController : PopupViewController {
     weak var delegate : NewProjectDelegate?
-    @IBOutlet weak var container: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBAction func handleAddAction(_ sender: Any) {
         
