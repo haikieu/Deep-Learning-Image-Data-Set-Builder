@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		359BA39D1FB526F10010E7DA /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BA39C1FB526F10010E7DA /* PopupViewController.swift */; };
 		3752490B1FAA442900AC1D77 /* NewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3752490A1FAA442900AC1D77 /* NewTagViewController.swift */; };
 		375249B11FAA92BD00AC1D77 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375249B01FAA92BD00AC1D77 /* NavigationViewController.swift */; };
 		375249B31FAA92F800AC1D77 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375249B21FAA92F800AC1D77 /* TabBarController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		359BA39C1FB526F10010E7DA /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		3752490A1FAA442900AC1D77 /* NewTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTagViewController.swift; sourceTree = "<group>"; };
 		375249B01FAA92BD00AC1D77 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		375249B21FAA92F800AC1D77 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				469B0F4E1F9BC2B300E0CBDD /* ContainerView.swift */,
 				4630D88A1F9BC5F200F2376C /* ObjectView.swift */,
 				375249B41FAA9CFD00AC1D77 /* BaseViewController.swift */,
+				359BA39C1FB526F10010E7DA /* PopupViewController.swift */,
 			);
 			path = BuildLearningModel;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				4673EB4F1F9E278D0085358D /* ViewController.delegates.swift in Sources */,
 				469B0F4B1F9AE2E200E0CBDD /* ViewController.others.swift in Sources */,
 				4673EB4B1F9DA5190085358D /* CGRect+ext.swift in Sources */,
+				359BA39D1FB526F10010E7DA /* PopupViewController.swift in Sources */,
 				469B0F491F9ADD6200E0CBDD /* UIApplication+ext.swift in Sources */,
 				46616E931FA9B067008CD20C /* TagsViewController.swift in Sources */,
 				46F5B0511FA9AD2C0019FA34 /* NewProjectViewController.swift in Sources */,

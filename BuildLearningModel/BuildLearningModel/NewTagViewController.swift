@@ -13,11 +13,10 @@ protocol NewTagDelegate : class {
     func askForProject() -> Project
 }
 
-class NewTagViewController: UIViewController {
+class NewTagViewController: PopupViewController {
 
     weak var delegate : NewTagDelegate?
     
-    @IBOutlet weak var container: UIView!
     @IBOutlet weak var textField: UITextField!
 
     @IBAction func handleAddAction(_ sender: Any) {

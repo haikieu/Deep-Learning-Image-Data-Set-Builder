@@ -14,17 +14,14 @@ protocol TagDelegate : class {
     func didSetTagName(_ tagName: String)
 }
 
-class TagViewController : UIViewController {
+class TagViewController : PopupViewController {
     
     weak var delegate : TagDelegate?
-    @IBOutlet weak var container: UIView!
     
     @IBOutlet weak var tagField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        container.layer.cornerRadius = 15
-        
         _ = tapGesture
     }
     
