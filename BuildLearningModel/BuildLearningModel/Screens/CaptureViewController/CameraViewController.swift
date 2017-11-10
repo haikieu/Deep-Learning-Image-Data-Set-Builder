@@ -144,6 +144,11 @@ class CameraViewController: UIViewController {
         
         containerView.previewImage.image = image
         containerView.previewView.isHidden = false
+        
+        let rect = containerView.objectView.frame
+        let fileName = "\(tag.files.count)_\(rect.origin.x)_\(rect.origin.y)_\(rect.width)_\(rect.height)"
+        let rawFile = tag.saveFile(image, name: fileName)
+        tag.files.append(rawFile)
     }
     
     

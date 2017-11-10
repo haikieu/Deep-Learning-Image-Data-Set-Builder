@@ -12,6 +12,16 @@ import UIKit
 enum ImageFormat {
     case jpeg
     case png
+    
+    var stringValue : String {
+        if self == .jpeg {
+            return "jpeg"
+        }
+        if self == .png {
+            return "png"
+        }
+        return "nil"
+    }
 }
 
 extension String {
@@ -113,6 +123,7 @@ class Project {
 class Tag {
     weak var project : Project!
     var tagName : String
+    var files : [RawFile] = [RawFile]()
     
     init(tagName: String, project: Project) {
         self.project = project
@@ -127,12 +138,25 @@ class Tag {
     }
     
     func load(_ completion: ((Bool)->Void)? = nil) {
-     
+        
     }
     
-    func createRawFile(_ image: UIImage, name: String) -> RawFile {
+    private func createRawFile(_ image: UIImage, name: String) -> RawFile {
         return RawFile(image: image, name: name, tag: self)
     }
+    
+    func saveFile(_ image: UIImage, name: String) -> RawFile {
+        let format  = ImageFormat.jpeg
+        let fileName = "\(name).\(format)"
+        let file = createRawFile(image, name: fileName)
+        files.append(file)
+        
+        //Write to document
+        DocumentManager.shared.saveImage(image, path: file.dirPath, format: .jpeg)
+        
+        return file
+    }
+    
     
     func rename(to newName: String, completion: ((Bool)->Void)? = nil) {
         DocumentManager.shared.rename(dirPath, newName: newName) { (success) in
@@ -152,12 +176,17 @@ class RawFile {
     weak var tag : Tag!
     var fileName : String
     var image : UIImage!
+    var dirPath : URL {
+        return tag.dirPath.appendingPathComponent(fileName)
+    }
     
     init(image: UIImage, name: String, tag: Tag) {
         self.image = image
         self.tag = tag
         self.fileName = name
+        
     }
+    
 }
 
 class DocumentManager {
