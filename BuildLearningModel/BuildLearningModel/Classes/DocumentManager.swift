@@ -262,6 +262,9 @@ class DocumentManager {
     }
     
     func saveImage(_ image: UIImage, path: URL, format: ImageFormat = .jpeg) {
+        
+//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        
         var data : Data!
         
         if format == .jpeg {

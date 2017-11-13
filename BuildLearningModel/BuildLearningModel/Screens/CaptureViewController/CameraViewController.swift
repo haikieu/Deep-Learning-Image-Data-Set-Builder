@@ -185,21 +185,18 @@ class CameraViewController: UIViewController {
     
     func captureImage(pixelBuffer: CVPixelBuffer) -> UIImage {
         
-        //Pixel buffer metadata
-        let width = CVPixelBufferGetWidth(pixelBuffer)
-        let height = CVPixelBufferGetHeight(pixelBuffer)
-
-        let ciImage = CIImage.init(cvPixelBuffer: pixelBuffer).oriented(CGImagePropertyOrientation.right)
-        return UIImage(ciImage: ciImage)
-//        let base = UIScreen.main.bounds
-//        var x = containerView.objectView.frame.origin.y
-//        var y = containerView.objectView.frame.origin.x
-//        let w = containerView.objectView.frame.size.height
-//        let h = containerView.objectView.frame.size.width
-//
-//        let cropFrame = CGRect(x: x, y: y, width: w, height: h)
-//
-//        return UIImage.init(ciImage: ciImage.cropped(to: cropFrame))
+        var cgImage : CGImage! = nil
+        if let device = MTLCreateSystemDefaultDevice() {
+            //Pixel buffer metadata
+            let width = CVPixelBufferGetWidth(pixelBuffer)
+            let height = CVPixelBufferGetHeight(pixelBuffer)
+            //Render cgImage
+            let ciImage = CIImage.init(cvPixelBuffer: pixelBuffer).oriented(CGImagePropertyOrientation.right)
+            let ciContext = CIContext.init(mtlDevice: device)
+            cgImage = ciContext.createCGImage(ciImage, from: CGRect(x: 0, y: 0, width: height, height: width))
+            
+        }
+        return UIImage(cgImage: cgImage)
     }
     
     
