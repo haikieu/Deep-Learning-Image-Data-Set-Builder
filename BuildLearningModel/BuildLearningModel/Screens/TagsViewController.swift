@@ -33,10 +33,10 @@ class TagsViewController : BaseViewController {
     
     func loadTags() {
         showLoading("Loading tags...") {
-            self.project.loadTags({ (success) in
+            self.project.loadTags(andFile: true) { (success) in
                 self.tableView.reloadData()
                 self.dismissLoading(completion: {})
-            })
+            }
         }
     }
     
@@ -64,10 +64,11 @@ extension TagsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell : UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "reuse_cell")
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "reuse_cell")
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "reuse_cell")
         }
         let tag = project.tags[indexPath.row]
         cell.textLabel?.text = tag.tagName
+        cell.detailTextLabel?.text = "(\(tag.files.count) images)"
         return cell
     }
 }

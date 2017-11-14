@@ -34,9 +34,33 @@ extension String {
     }
 }
 
-private let readingQueue = DispatchQueue(label: "com.hk.concurrentQueue.readFile", attributes: .concurrent)
-private let writingQueue = DispatchQueue(label: "com.hk.serialQueue.writeFile")
-private weak var mainQueue = DispatchQueue.main
+//Reading and writing tasks should use appropriate queue to prevent conflict.
+//private let readingQueue = DispatchQueue(label: "com.hk.concurrentQueue.readFile", attributes: .concurrent) //Concurent queue
+//private let writingQueue = DispatchQueue(label: "com.hk.serialQueue.writeFile") //Serial queue
+//private weak var mainQueue = DispatchQueue.main
+
+class ExtendQueue : OperationQueue {
+    override func addOperation(_ block: @escaping () -> Void) {
+        log("queue >>> Current tasks in \(self.name ?? "Queue") is \(self.operationCount)")
+        log("queue >>> \(self.name ?? "Queue") Gonna execute new task")
+        super.addOperation(block)
+    }
+}
+
+private let readingQueue : ExtendQueue = {
+    let queue = ExtendQueue()
+    queue.name = "ReadingQueue"
+    return queue
+}()
+private let writingQueue : ExtendQueue = {
+    let queue = ExtendQueue()
+    queue.name = "WritingQueue"
+    queue.maxConcurrentOperationCount = 1
+    return queue
+}()
+
+private weak var mainQueue : OperationQueue! = OperationQueue.main
+
 
 class Workspace {
     static let shared = Workspace()
@@ -50,7 +74,7 @@ class Workspace {
     }
     
     func loadProjects(completion:(([Project])->Void)?) {
-        readingQueue.async {
+        let loading = {
             var projects = [Project]()
             do {
                 let urls = DocumentManager.shared.getURLContents(self.dirPath)
@@ -62,22 +86,23 @@ class Workspace {
                 }
             } catch {
                 log("load project >>> Cannot read dir properties")
-                mainQueue?.async {
+                mainQueue.addOperation {
                     completion?([])
                 }
                 return
             }
             
-            mainQueue?.async {
+            mainQueue.addOperation {
                 completion?(projects)
             }
         }
+        OperationQueue.current == readingQueue ? loading() : readingQueue.addOperation(loading)
     }
 }
 
 class Project {
     var projectName : String!
-    var tags = [Tag]()
+    var tags : [Tag]!
     
     var dirPath : URL {
         return DocumentManager.shared.getDirPathForProject(projectName)
@@ -89,30 +114,33 @@ class Project {
         DocumentManager.shared.createDirIfNeeded(dirPath)
     }
     
-    func loadTags(_ completion: ((Bool)->Void)? = nil) {
+    func loadTags(andFile: Bool = false, andImage: Bool = false, completion: ((Bool)->Void)? = nil) {
         
-        readingQueue.async {
-            
+        let loading = {
             do {
+                self.tags = [Tag]()
                 let urls = DocumentManager.shared.getURLContents(self.dirPath)
                 for (index,url) in urls.enumerated() {
                     if let isDirectory = try  url.resourceValues(forKeys: [URLResourceKey.isDirectoryKey]).isDirectory, isDirectory {
                         log("load project >>> Add #\(index) tag \(url.lastPathComponent.removeUnderscore)")
                         let tag = Tag(tagName: url.lastPathComponent.removeUnderscore, project: self)
                         self.tags.append(tag)
+                        
+                        tag.loadFiles(readImage: andFile, nil)
                     }
                 }
                 log("load project >>> Found \(urls.count), added \(self.tags.count) tags")
                 
             } catch {
                 log("load project >>> Exception, cannot load project")
-                mainQueue?.async { completion?(false) }
+                mainQueue.addOperation { completion?(false) }
                 return
             }
             
             log("load project >>> Completed loading, then invoke callback")
-            mainQueue?.async { completion?(true) }
+            mainQueue.addOperation { completion?(true) }
         }
+        OperationQueue.current == readingQueue ? loading() : readingQueue.addOperation(loading)
     }
     
     func createTag(_ name: String) -> Tag {
@@ -123,7 +151,7 @@ class Project {
 class Tag {
     weak var project : Project!
     var tagName : String
-    var files : [RawFile] = [RawFile]()
+    var files : [RawFile]!
     
     init(tagName: String, project: Project) {
         self.project = project
@@ -137,8 +165,28 @@ class Tag {
         return Tag.getDirPath(tagName, projectName: project!.projectName)
     }
     
-    func load(_ completion: ((Bool)->Void)? = nil) {
+    func loadFiles(readImage: Bool = false, _ completion: ((Bool)->Void)? = nil) {
+        let loading = {
+            do {
+                self.files = [RawFile]()
+                let urls = DocumentManager.shared.getURLContents(self.dirPath, dirOnly: false)
+                for (index,url) in urls.enumerated() {
+                    log("load file >>> Add #\(index) file \(url)")
+                    let file = RawFile(image: nil, name: url.lastPathComponent, tag: self)
+                    self.files.append(file)
+                }
+                log("load file >>> Found \(urls.count), added \(self.files.count) news")
+            } catch {
+                log("load file >>> Exception, cannot load files")
+                mainQueue.addOperation { completion?(false) }
+                return
+            }
+            
+            log("load file >>> Completed loading, then invoke callback")
+            mainQueue.addOperation { completion?(true) }
+        }
         
+        OperationQueue.current == readingQueue ? loading() : readingQueue.addOperation(loading)
     }
     
     private func createRawFile(_ image: UIImage, name: String) -> RawFile {
@@ -162,7 +210,7 @@ class Tag {
         DocumentManager.shared.rename(dirPath, newName: newName) { (success) in
             
             if success { self.tagName = newName }
-            mainQueue?.async { completion?(success) }
+            mainQueue.addOperation { completion?(success) }
         }
         
     }
@@ -180,13 +228,14 @@ class RawFile {
         return tag.dirPath.appendingPathComponent(fileName)
     }
     
-    init(image: UIImage, name: String, tag: Tag) {
+    init(image: UIImage!, name: String, tag: Tag) {
         self.image = image
         self.tag = tag
         self.fileName = name
-        
     }
     
+    func loadImage(_ completion: ((Bool)->Void)? = nil) {
+    }
 }
 
 class DocumentManager {
@@ -235,7 +284,7 @@ class DocumentManager {
         
         let newDirPath = URL(fileURLWithPath: dirPath.relativePath).deletingLastPathComponent().appendingPathComponent(newName, isDirectory: true)
         
-        writingQueue.async {
+        writingQueue.addOperation {
             do {
                 try FileManager.default.moveItem(at: dirPath, to: newDirPath)
 //                try FileManager.default.removeItem(at: dirPath)
@@ -248,11 +297,11 @@ class DocumentManager {
             completion?(true)
         }
     }
-    
-    func getURLContents(_ dirPath: URL) -> [URL] {
+    ///dirOnly = true mean get dir URls, otherwise get file Urls
+    func getURLContents(_ dirPath: URL, dirOnly: Bool = true) -> [URL] {
         
         do {
-            let properties : [URLResourceKey]? = [URLResourceKey.isDirectoryKey]
+            let properties : [URLResourceKey]? = dirOnly ? [URLResourceKey.isDirectoryKey] : nil
             let urls = try FileManager.default.contentsOfDirectory(at: dirPath, includingPropertiesForKeys: properties, options: .skipsHiddenFiles)
             return urls
         } catch {
@@ -281,3 +330,4 @@ class DocumentManager {
     
     
 }
+
