@@ -20,16 +20,18 @@ extension CameraViewController : SizeDelegate {
     
     func didChangeSize(w: CGFloat, h: CGFloat) {
         let center = containerView.objectView.center
-        containerView.objectView.bounds.size = CGSize(width: w, height: h)
+//        containerView.objectView.bounds.size = CGSize(width: w, height: h)
+        objectSize = CGSize(width: w, height: h)
         containerView.objectView.center = center
     }
 }
 
 extension CameraViewController : ModeDelegate {
-    func didSetMode(_ isManual: Bool, interval: Double, randomJump: Bool) {
+    func didSetMode(_ isManual: Bool, interval: Double, randomJump: Bool, capture: Bool) {
         self.isManualCaptureMode = isManual
         self.interval = interval
         self.randomJump = randomJump
+        self.capture = capture
     }
 }
 

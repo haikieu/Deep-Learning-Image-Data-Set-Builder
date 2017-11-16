@@ -42,6 +42,12 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var sizeBtn: UIBarButtonItem!
     let cameraLayer = AVCaptureVideoPreviewLayer.init()
     
+    var objectSize : CGSize! {
+        didSet {
+            containerView.objectView.frame.size = objectSize
+        }
+    }
+    
     deinit {
         clearLoopTimer()
     }
@@ -51,7 +57,7 @@ class CameraViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         setupUI()
         startSession()
-        
+        objectSize = containerView.objectView.frame.size
         _ = tapGesture
     }
     
@@ -144,7 +150,7 @@ class CameraViewController: UIViewController {
     
     @IBAction func handleCameraAction(_ sender: Any) {
         if isManualCaptureMode {
-            capture()
+            captureImage()
         } else {
             if timer == nil {
                 activateLoopTimer()
@@ -154,7 +160,7 @@ class CameraViewController: UIViewController {
         }
     }
     
-    func capture() {
+    func captureImage() {
         captureEffect()
         let image = captureImage(pixelBuffer: (sceneView.session.currentFrame?.capturedImage)!)
         
@@ -188,9 +194,11 @@ class CameraViewController: UIViewController {
         }
     }
     
+    //Capture mode properties
     var isManualCaptureMode : Bool = true
     var interval : Double = 0
     var randomJump : Bool = false
+    var capture : Bool = false
     
     lazy var tapGesture : UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
@@ -223,7 +231,7 @@ class CameraViewController: UIViewController {
     var timer : Timer!
     
     @objc func doTask() {
-        capture()
+        captureImage()
     }
     
     func clearLoopTimer() {
@@ -240,10 +248,14 @@ class CameraViewController: UIViewController {
     }
     
     func moveTargetRandomly() {
-        let targetRect = containerView.objectView.frame
-        let x = arc4random_uniform(UInt32(UIScreen.main.bounds.width.rounded(.toNearestOrAwayFromZero) - targetRect.size.width.rounded(.toNearestOrAwayFromZero)))
-        let y = arc4random_uniform(UInt32(UIScreen.main.bounds.height.rounded(.toNearestOrAwayFromZero) - targetRect.size.height.rounded(.toNearestOrAwayFromZero)))
-        let randomRect = CGRect(x: CGFloat(x), y: CGFloat(y), width: targetRect.width, height: targetRect.height)
+//        let objectPosition = containerView.objectView.frame.origin
+        let sizeScale = CGFloat((arc4random_uniform(31) + 70)) / 100.0
+        let width = objectSize.width * sizeScale
+        let height = objectSize.height * sizeScale
+        
+        let x = arc4random_uniform(UInt32(UIScreen.main.bounds.width.rounded(.toNearestOrAwayFromZero) - width.rounded(.toNearestOrAwayFromZero)))
+        let y = arc4random_uniform(UInt32(UIScreen.main.bounds.height.rounded(.toNearestOrAwayFromZero) - height.rounded(.toNearestOrAwayFromZero)))
+        let randomRect = CGRect(x: CGFloat(x), y: CGFloat(y), width: width, height: height)
         containerView.objectView.frame = randomRect
     }
     
