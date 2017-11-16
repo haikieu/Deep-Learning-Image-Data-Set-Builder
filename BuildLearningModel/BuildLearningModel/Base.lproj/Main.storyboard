@@ -468,39 +468,18 @@
                                             <constraint firstAttribute="width" constant="47" id="ETc-3Z-nHg"/>
                                         </constraints>
                                     </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Capture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk3-C2-SyA">
-                                        <rect key="frame" x="15" y="151" width="69" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="69" id="hCM-uj-sSu"/>
-                                            <constraint firstAttribute="height" constant="21" id="r2G-Kd-AOJ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="npG-Q8-0CT">
-                                        <rect key="frame" x="102" y="146" width="49" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="47" id="jwO-UX-Xq7"/>
-                                            <constraint firstAttribute="height" constant="31" id="yJS-r7-6Y5"/>
-                                        </constraints>
-                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="G8l-op-28h" firstAttribute="leading" secondItem="VeA-yO-5cv" secondAttribute="trailing" constant="7" id="0Tw-TT-jhc"/>
                                     <constraint firstAttribute="height" constant="180" id="5o7-fX-uSQ"/>
                                     <constraint firstItem="zdL-G8-WeE" firstAttribute="top" secondItem="G8l-op-28h" secondAttribute="bottom" constant="11" id="7QP-92-RPd"/>
-                                    <constraint firstItem="npG-Q8-0CT" firstAttribute="leading" secondItem="Xk3-C2-SyA" secondAttribute="trailing" constant="18" id="9M1-Bd-G0f"/>
-                                    <constraint firstItem="npG-Q8-0CT" firstAttribute="top" secondItem="zdL-G8-WeE" secondAttribute="bottom" constant="14" id="BZA-9d-VFa"/>
                                     <constraint firstItem="0il-jY-yil" firstAttribute="top" secondItem="yyO-aI-r2o" secondAttribute="top" constant="20" id="Cx9-7b-30E"/>
                                     <constraint firstItem="G8l-op-28h" firstAttribute="top" secondItem="0il-jY-yil" secondAttribute="bottom" constant="12" id="Gav-lz-ygf"/>
-                                    <constraint firstItem="Xk3-C2-SyA" firstAttribute="leading" secondItem="yyO-aI-r2o" secondAttribute="leading" constant="15" id="KJp-fw-rMY"/>
                                     <constraint firstItem="zdL-G8-WeE" firstAttribute="leading" secondItem="qag-53-TTp" secondAttribute="trailing" constant="18" id="KxI-g6-ENd"/>
                                     <constraint firstAttribute="width" constant="240" id="Tvf-v6-F76"/>
                                     <constraint firstAttribute="trailing" secondItem="j5a-vS-Aqu" secondAttribute="trailing" constant="15" id="XWu-t8-EqS"/>
                                     <constraint firstAttribute="trailing" secondItem="0il-jY-yil" secondAttribute="trailing" constant="15" id="ZTh-7K-hLl"/>
-                                    <constraint firstItem="Xk3-C2-SyA" firstAttribute="top" secondItem="qag-53-TTp" secondAttribute="bottom" constant="24" id="ZTp-Ja-jia"/>
                                     <constraint firstItem="qag-53-TTp" firstAttribute="top" secondItem="VeA-yO-5cv" secondAttribute="bottom" constant="20" id="cJR-Go-yqm"/>
                                     <constraint firstItem="VeA-yO-5cv" firstAttribute="leading" secondItem="yyO-aI-r2o" secondAttribute="leading" constant="15" id="fr9-Tj-Cix"/>
                                     <constraint firstItem="j5a-vS-Aqu" firstAttribute="top" secondItem="0il-jY-yil" secondAttribute="bottom" constant="12" id="gVh-Yk-1t5"/>
@@ -519,7 +498,6 @@
                     </view>
                     <size key="freeformSize" width="280" height="200"/>
                     <connections>
-                        <outlet property="captureSwitch" destination="npG-Q8-0CT" id="qlG-zE-U2c"/>
                         <outlet property="container" destination="yyO-aI-r2o" id="jWp-KU-agQ"/>
                         <outlet property="intervalField" destination="G8l-op-28h" id="vTP-5k-yre"/>
                         <outlet property="randomSwitch" destination="zdL-G8-WeE" id="FJW-tf-xkT"/>
