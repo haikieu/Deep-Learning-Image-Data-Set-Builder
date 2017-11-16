@@ -10,13 +10,14 @@ import Foundation
 import UIKit
 
 protocol ModeDelegate : class {
-    func didSetMode(_ isManual: Bool)
+    func didSetMode(_ isManual: Bool, interval: Double, randomJump: Bool)
 }
 
 class ModeViewController : PopupViewController {
     
     weak var delegate : ModeDelegate?
     
+    @IBOutlet weak var randomSwitch: UISwitch!
     @IBOutlet weak var segment: UISegmentedControl!
     
     lazy var tapGesture : UITapGestureRecognizer = {
@@ -44,8 +45,10 @@ class ModeViewController : PopupViewController {
     @IBAction func modeChanged(_ sender: Any) {
         if segment.selectedSegmentIndex == 0 {
             intervalField.isEnabled = false
+            randomSwitch.isEnabled = false
         } else {
             intervalField.isEnabled = true
+            randomSwitch.isEnabled = true
         }
     }
     
@@ -54,7 +57,11 @@ class ModeViewController : PopupViewController {
     @IBAction func setMode(_ sender: Any) {
         
         self.dismiss(animated: true) {
-            self.delegate?.didSetMode(self.segment.selectedSegmentIndex == 0)
+//            self.delegate?.didSetMode(self.segment.selectedSegmentIndex == 0)
+            let isManual = self.segment.selectedSegmentIndex == 0
+            let interval = Double(self.intervalField.text ?? "0") ?? 0.0
+            let randomJump = self.randomSwitch.isOn
+            self.delegate?.didSetMode(isManual, interval: interval, randomJump: randomJump)
         }
     }
 }

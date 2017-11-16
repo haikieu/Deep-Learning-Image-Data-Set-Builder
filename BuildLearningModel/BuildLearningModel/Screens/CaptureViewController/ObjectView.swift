@@ -156,6 +156,7 @@ class ObjectView : UIView {
             log("sizePoint \(sizePoint)  location \(location)")
             self.bounds = CGRect(x: 0, y: 0, width: originalSize.width + location.x, height: originalSize.height + location.y)
             self.center = originalCenter
+            updatePositionLabel()
             break
         case .ended:
             
@@ -240,11 +241,11 @@ class ObjectView : UIView {
     
     private func updatePositionLabel() {
         //Update target label
-        let x = round(self.frame.origin.x)
-        let y = round(self.frame.origin.y)
-        let w = round(self.frame.size.width)
-        let h = round(self.frame.size.height)
-        positionLabel?.text = "(x=\(x),y=\(y),w=\(w),h=\(h))"
+        let x = self.frame.origin.x.rounded(.toNearestOrAwayFromZero)
+        let y = self.frame.origin.y.rounded(.toNearestOrAwayFromZero)
+        let w = self.frame.size.width.rounded(.toNearestOrAwayFromZero)
+        let h = self.frame.size.height.rounded(.toNearestOrAwayFromZero)
+        positionLabel?.text = "(x=\(Int(x)),y=\(Int(y)),w=\(Int(w)),h=\(Int(h)))"
     }
     
     var tagLabel : UILabel? {

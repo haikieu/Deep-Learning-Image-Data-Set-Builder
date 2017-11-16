@@ -26,8 +26,10 @@ extension CameraViewController : SizeDelegate {
 }
 
 extension CameraViewController : ModeDelegate {
-    func didSetMode(_ isManual: Bool) {
-        isManualCaptureMode = isManual
+    func didSetMode(_ isManual: Bool, interval: Double, randomJump: Bool) {
+        self.isManualCaptureMode = isManual
+        self.interval = interval
+        self.randomJump = randomJump
     }
 }
 

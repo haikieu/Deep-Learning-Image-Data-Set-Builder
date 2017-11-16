@@ -42,6 +42,10 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var sizeBtn: UIBarButtonItem!
     let cameraLayer = AVCaptureVideoPreviewLayer.init()
     
+    deinit {
+        clearLoopTimer()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -139,6 +143,18 @@ class CameraViewController: UIViewController {
     }
     
     @IBAction func handleCameraAction(_ sender: Any) {
+        if isManualCaptureMode {
+            capture()
+        } else {
+            if timer == nil {
+                activateLoopTimer()
+            } else {
+                clearLoopTimer()
+            }
+        }
+    }
+    
+    func capture() {
         captureEffect()
         let image = captureImage(pixelBuffer: (sceneView.session.currentFrame?.capturedImage)!)
         
@@ -146,7 +162,7 @@ class CameraViewController: UIViewController {
         containerView.previewView.isHidden = false
         
         let rect = containerView.objectView.frame
-        let fileName = "\(tag.files.count)_\(rect.origin.x)_\(rect.origin.y)_\(rect.width)_\(rect.height)"
+        let fileName = "\(tag.files.count)_\(Int(rect.origin.x.rounded(.toNearestOrAwayFromZero)))_\(Int(rect.origin.y.rounded(.toNearestOrAwayFromZero)))_\(Int(rect.width.rounded(.toNearestOrAwayFromZero)))_\(Int(rect.height.rounded(.toNearestOrAwayFromZero)))"
         let rawFile = tag.saveFile(image, name: fileName)
         tag.files.append(rawFile)
     }
@@ -166,10 +182,15 @@ class CameraViewController: UIViewController {
             effectView.alpha = 0
         }) { (finished) in
             effectView.removeFromSuperview()
+            if self.randomJump {
+                self.moveTargetRandomly()
+            }
         }
     }
     
     var isManualCaptureMode : Bool = true
+    var interval : Double = 0
+    var randomJump : Bool = false
     
     lazy var tapGesture : UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
@@ -199,7 +220,36 @@ class CameraViewController: UIViewController {
         return UIImage(cgImage: cgImage)
     }
     
+    var timer : Timer!
     
+    @objc func doTask() {
+        capture()
+    }
+    
+    func clearLoopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    func activateLoopTimer() {
+        guard isManualCaptureMode == false, timer == nil else { return }
+        clearLoopTimer()
+        
+        timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(doTask), userInfo: nil, repeats: true)
+        timer.fire()
+    }
+    
+    func moveTargetRandomly() {
+        let targetRect = containerView.objectView.frame
+        let x = arc4random_uniform(UInt32(UIScreen.main.bounds.width.rounded(.toNearestOrAwayFromZero) - targetRect.size.width.rounded(.toNearestOrAwayFromZero)))
+        let y = arc4random_uniform(UInt32(UIScreen.main.bounds.height.rounded(.toNearestOrAwayFromZero) - targetRect.size.height.rounded(.toNearestOrAwayFromZero)))
+        let randomRect = CGRect(x: CGFloat(x), y: CGFloat(y), width: targetRect.width, height: targetRect.height)
+        containerView.objectView.frame = randomRect
+    }
+    
+    func deactivateLoopTimer() {
+        
+    }
 }
 
 

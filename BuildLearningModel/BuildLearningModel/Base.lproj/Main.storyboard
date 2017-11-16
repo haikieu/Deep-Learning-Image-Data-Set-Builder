@@ -461,7 +461,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zdL-G8-WeE">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zdL-G8-WeE">
                                         <rect key="frame" x="102" y="101" width="49" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="6Wv-Xn-dTa"/>
@@ -500,6 +500,7 @@
                     <connections>
                         <outlet property="container" destination="yyO-aI-r2o" id="jWp-KU-agQ"/>
                         <outlet property="intervalField" destination="G8l-op-28h" id="vTP-5k-yre"/>
+                        <outlet property="randomSwitch" destination="zdL-G8-WeE" id="FJW-tf-xkT"/>
                         <outlet property="segment" destination="0il-jY-yil" id="49b-8r-Gcy"/>
                     </connections>
                 </viewController>
