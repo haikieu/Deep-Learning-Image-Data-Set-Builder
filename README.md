@@ -1,4 +1,4 @@
-# Deep Learning Datasets Builder
+# Deep Learning Datasets Builder (Welcome any contribution)
 -----------------------------
 ## Coming Features:
 * Export datasets to VOC format
