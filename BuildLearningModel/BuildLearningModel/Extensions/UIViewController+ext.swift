@@ -30,9 +30,15 @@ public extension UIViewController {
         self.present(vc, animated: false, completion: completion)
     }
     
-    public func alert(_ title: String, message: String?, action: ((UIAlertAction)->Void)?) {
+    public func alert(_ title: String, message: String?, doAction: UIAlertAction? = nil, cancelAction: UIAlertAction) {
         let av = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        av.addAction(UIAlertAction(title: "OK", style: .default, handler: action))
+        if doAction != nil {  av.addAction(doAction!) }
+        av.addAction(cancelAction)
         self.present(av, animated: true, completion: nil)
+    }
+    
+    public func alert(_ title: String, message: String?, action: ((UIAlertAction)->Void)?) {
+        let action = UIAlertAction(title: "OK", style: .default, handler: action)
+        self.alert(title, message: message, cancelAction: action)
     }
 }
