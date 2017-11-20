@@ -29,6 +29,7 @@
 		469B0F4F1F9BC2B300E0CBDD /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469B0F4E1F9BC2B300E0CBDD /* ContainerView.swift */; };
 		46BE3E891FAAEB6B00916A47 /* UIApplication+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE3E881FAAEB6B00916A47 /* UIApplication+ext.swift */; };
 		46BE3E8B1FAAEC8500916A47 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE3E8A1FAAEC8500916A47 /* Log.swift */; };
+		46C15DB71FC371E500D62C8E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C15DB61FC371E500D62C8E /* MediaPlayer.framework */; };
 		46C201E41FC1EBE50005B042 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C201E21FC1EBC50005B042 /* Crashlytics.framework */; };
 		46C201E51FC1EBE70005B042 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C201E31FC1EBC50005B042 /* Fabric.framework */; };
 		46E01E311FB53A160086D785 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E01E301FB53A160086D785 /* PopupViewController.swift */; };
@@ -64,6 +65,7 @@
 		469B0F4E1F9BC2B300E0CBDD /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		46BE3E881FAAEB6B00916A47 /* UIApplication+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+ext.swift"; sourceTree = "<group>"; };
 		46BE3E8A1FAAEC8500916A47 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		46C15DB61FC371E500D62C8E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		46C201E21FC1EBC50005B042 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		46C201E31FC1EBC50005B042 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		46E01E301FB53A160086D785 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopupViewController.swift; path = BuildLearningModel/Classes/PopupViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -77,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46C15DB71FC371E500D62C8E /* MediaPlayer.framework in Frameworks */,
 				46C201E41FC1EBE50005B042 /* Crashlytics.framework in Frameworks */,
 				46C201E51FC1EBE70005B042 /* Fabric.framework in Frameworks */,
 			);
@@ -92,6 +95,7 @@
 				46C201E31FC1EBC50005B042 /* Fabric.framework */,
 				469B0F151F9ACB2A00E0CBDD /* BuildLearningModel */,
 				469B0F141F9ACB2A00E0CBDD /* Products */,
+				46C15DB51FC371E500D62C8E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +188,14 @@
 				4650DC5E1F9D53F800B5BBC8 /* ModeViewController.swift */,
 			);
 			path = Popups;
+			sourceTree = "<group>";
+		};
+		46C15DB51FC371E500D62C8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46C15DB61FC371E500D62C8E /* MediaPlayer.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
