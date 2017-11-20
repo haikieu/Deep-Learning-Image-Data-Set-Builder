@@ -15,6 +15,7 @@ import Vision
 import CoreML
 import MetalKit
 import Metal
+import MediaPlayer
 
 
 
@@ -22,6 +23,7 @@ class CameraViewController: UIViewController {
 
     weak var tag : Tag!
     
+    @IBOutlet weak var volumeView: MPVolumeView!
     @IBAction func tapOnObjectView(_ sender: Any) {
         log("tap on object view")
     }

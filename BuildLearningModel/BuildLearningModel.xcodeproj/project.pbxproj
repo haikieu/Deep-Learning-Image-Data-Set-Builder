@@ -29,6 +29,9 @@
 		469B0F4F1F9BC2B300E0CBDD /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469B0F4E1F9BC2B300E0CBDD /* ContainerView.swift */; };
 		46BE3E891FAAEB6B00916A47 /* UIApplication+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE3E881FAAEB6B00916A47 /* UIApplication+ext.swift */; };
 		46BE3E8B1FAAEC8500916A47 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BE3E8A1FAAEC8500916A47 /* Log.swift */; };
+		46C15DB71FC371E500D62C8E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C15DB61FC371E500D62C8E /* MediaPlayer.framework */; };
+		46C201E41FC1EBE50005B042 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C201E21FC1EBC50005B042 /* Crashlytics.framework */; };
+		46C201E51FC1EBE70005B042 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C201E31FC1EBC50005B042 /* Fabric.framework */; };
 		46E01E311FB53A160086D785 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E01E301FB53A160086D785 /* PopupViewController.swift */; };
 		46E01E331FB53A3C0086D785 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E01E321FB53A3C0086D785 /* BaseViewController.swift */; };
 		46EE5F021F9BC4EE00AF4634 /* TargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469B0F4C1F9AEBD600E0CBDD /* TargetView.swift */; };
@@ -62,6 +65,9 @@
 		469B0F4E1F9BC2B300E0CBDD /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		46BE3E881FAAEB6B00916A47 /* UIApplication+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+ext.swift"; sourceTree = "<group>"; };
 		46BE3E8A1FAAEC8500916A47 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		46C15DB61FC371E500D62C8E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		46C201E21FC1EBC50005B042 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		46C201E31FC1EBC50005B042 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		46E01E301FB53A160086D785 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopupViewController.swift; path = BuildLearningModel/Classes/PopupViewController.swift; sourceTree = SOURCE_ROOT; };
 		46E01E321FB53A3C0086D785 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		46F5B04E1FA9A3CB0019FA34 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +79,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46C15DB71FC371E500D62C8E /* MediaPlayer.framework in Frameworks */,
+				46C201E41FC1EBE50005B042 /* Crashlytics.framework in Frameworks */,
+				46C201E51FC1EBE70005B042 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,8 +91,11 @@
 		469B0F0A1F9ACB2A00E0CBDD = {
 			isa = PBXGroup;
 			children = (
+				46C201E21FC1EBC50005B042 /* Crashlytics.framework */,
+				46C201E31FC1EBC50005B042 /* Fabric.framework */,
 				469B0F151F9ACB2A00E0CBDD /* BuildLearningModel */,
 				469B0F141F9ACB2A00E0CBDD /* Products */,
+				46C15DB51FC371E500D62C8E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,6 +190,14 @@
 			path = Popups;
 			sourceTree = "<group>";
 		};
+		46C15DB51FC371E500D62C8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46C15DB61FC371E500D62C8E /* MediaPlayer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,6 +208,7 @@
 				469B0F0F1F9ACB2A00E0CBDD /* Sources */,
 				469B0F101F9ACB2A00E0CBDD /* Frameworks */,
 				469B0F111F9ACB2A00E0CBDD /* Resources */,
+				46C201E11FC1EBA40005B042 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -244,6 +265,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46C201E11FC1EBA40005B042 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run fa08fc035c9e47dc0dbc92c9ab0915db4e651e58 d43a46431863e9e9d0369b78c9971f2e6a8d5b6cfbeff5ec265b533fefb0daf3";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		469B0F0F1F9ACB2A00E0CBDD /* Sources */ = {
@@ -412,6 +449,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P3SL8HVN4S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BuildLearningModel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -428,6 +469,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P3SL8HVN4S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BuildLearningModel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
