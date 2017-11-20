@@ -30,6 +30,8 @@ class ModeViewController : PopupViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         _ = tapGesture
+        
+        modeChanged(self)
     }
     
     @objc func handleTapGesture(_ gesture:UITapGestureRecognizer) {
