@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Njq-wv-Fn9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Njq-wv-Fn9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -506,6 +506,7 @@
                     <connections>
                         <outlet property="container" destination="yyO-aI-r2o" id="jWp-KU-agQ"/>
                         <outlet property="intervalField" destination="G8l-op-28h" id="vTP-5k-yre"/>
+                        <outlet property="intervalLabel" destination="VeA-yO-5cv" id="rlE-wa-W4e"/>
                         <outlet property="randomSwitch" destination="zdL-G8-WeE" id="FJW-tf-xkT"/>
                         <outlet property="segment" destination="0il-jY-yil" id="49b-8r-Gcy"/>
                     </connections>

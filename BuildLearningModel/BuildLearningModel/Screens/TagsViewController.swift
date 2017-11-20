@@ -68,7 +68,7 @@ extension TagsViewController : UITableViewDataSource {
         }
         let tag = project.tags[indexPath.row]
         cell.textLabel?.text = tag.tagName
-        cell.detailTextLabel?.text = "(\(tag.files.count) images)"
+        cell.detailTextLabel?.text = tag.files != nil ? "\(tag.files.count) images" : "Just added"
         return cell
     }
 }
@@ -86,6 +86,8 @@ extension TagsViewController : NewTagDelegate {
     func didAddNewTag(_ tag: Tag) {
         project.tags.insert(tag, at: 0)
         tableView.reloadData()
+        tag.files = []
+        
     }
     
     func askForProject() -> Project {

@@ -19,6 +19,7 @@ class ModeViewController : PopupViewController {
     
     @IBOutlet weak var randomSwitch: UISwitch!
     @IBOutlet weak var segment: UISegmentedControl!
+    @IBOutlet weak var intervalLabel: UILabel!
     
     lazy var tapGesture : UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer.init(target: self, action: #selector(handleTapGesture(_:)))
@@ -44,11 +45,12 @@ class ModeViewController : PopupViewController {
     @IBAction func modeChanged(_ sender: Any) {
         if segment.selectedSegmentIndex == 0 {
             intervalField.isEnabled = false
-            randomSwitch.isEnabled = false
             intervalField.isHidden = true
+            intervalLabel.isHidden = true
         } else {
             intervalField.isEnabled = true
             intervalField.isHidden = false
+            intervalLabel.isHidden = false
         }
     }
     
