@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3564DC6D1FC396AD00FB83B9 /* KUIPopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3564DC6C1FC396AD00FB83B9 /* KUIPopOver.swift */; };
+		3564DC6F1FC396D300FB83B9 /* KUIPopOverUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3564DC6E1FC396D300FB83B9 /* KUIPopOverUsable.swift */; };
 		3752490B1FAA442900AC1D77 /* NewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3752490A1FAA442900AC1D77 /* NewTagViewController.swift */; };
 		375249B11FAA92BD00AC1D77 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375249B01FAA92BD00AC1D77 /* NavigationViewController.swift */; };
 		375249B31FAA92F800AC1D77 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375249B21FAA92F800AC1D77 /* TabBarController.swift */; };
@@ -40,6 +42,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3564DC6C1FC396AD00FB83B9 /* KUIPopOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KUIPopOver.swift; sourceTree = "<group>"; };
+		3564DC6E1FC396D300FB83B9 /* KUIPopOverUsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KUIPopOverUsable.swift; sourceTree = "<group>"; };
+		3564DC701FC3973900FB83B9 /* license.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		3752490A1FAA442900AC1D77 /* NewTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTagViewController.swift; sourceTree = "<group>"; };
 		375249B01FAA92BD00AC1D77 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		375249B21FAA92F800AC1D77 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -88,14 +93,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3564DC6A1FC3966600FB83B9 /* 3rdParties */ = {
+			isa = PBXGroup;
+			children = (
+				3564DC6B1FC3967A00FB83B9 /* KUIPopOver */,
+			);
+			path = 3rdParties;
+			sourceTree = "<group>";
+		};
+		3564DC6B1FC3967A00FB83B9 /* KUIPopOver */ = {
+			isa = PBXGroup;
+			children = (
+				3564DC6C1FC396AD00FB83B9 /* KUIPopOver.swift */,
+				3564DC6E1FC396D300FB83B9 /* KUIPopOverUsable.swift */,
+				3564DC701FC3973900FB83B9 /* license.txt */,
+			);
+			path = KUIPopOver;
+			sourceTree = "<group>";
+		};
 		469B0F0A1F9ACB2A00E0CBDD = {
 			isa = PBXGroup;
 			children = (
-				46C201E21FC1EBC50005B042 /* Crashlytics.framework */,
-				46C201E31FC1EBC50005B042 /* Fabric.framework */,
 				469B0F151F9ACB2A00E0CBDD /* BuildLearningModel */,
-				469B0F141F9ACB2A00E0CBDD /* Products */,
+				3564DC6A1FC3966600FB83B9 /* 3rdParties */,
 				46C15DB51FC371E500D62C8E /* Frameworks */,
+				469B0F141F9ACB2A00E0CBDD /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +215,8 @@
 		46C15DB51FC371E500D62C8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				46C201E21FC1EBC50005B042 /* Crashlytics.framework */,
+				46C201E31FC1EBC50005B042 /* Fabric.framework */,
 				46C15DB61FC371E500D62C8E /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
@@ -291,6 +315,7 @@
 				46BE3E8B1FAAEC8500916A47 /* Log.swift in Sources */,
 				4673EB4F1F9E278D0085358D /* CameraViewController.delegates.swift in Sources */,
 				469B0F4B1F9AE2E200E0CBDD /* CameraViewController.others.swift in Sources */,
+				3564DC6D1FC396AD00FB83B9 /* KUIPopOver.swift in Sources */,
 				46E01E311FB53A160086D785 /* PopupViewController.swift in Sources */,
 				46E01E331FB53A3C0086D785 /* BaseViewController.swift in Sources */,
 				4673EB4B1F9DA5190085358D /* CGRect+ext.swift in Sources */,
@@ -311,6 +336,7 @@
 				375249B31FAA92F800AC1D77 /* TabBarController.swift in Sources */,
 				4650DC5F1F9D53F800B5BBC8 /* ModeViewController.swift in Sources */,
 				46EE5F021F9BC4EE00AF4634 /* TargetView.swift in Sources */,
+				3564DC6F1FC396D300FB83B9 /* KUIPopOverUsable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
