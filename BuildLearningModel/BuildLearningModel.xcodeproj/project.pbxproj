@@ -39,6 +39,7 @@
 		46EE5F021F9BC4EE00AF4634 /* TargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469B0F4C1F9AEBD600E0CBDD /* TargetView.swift */; };
 		46F5B04F1FA9A3CB0019FA34 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5B04E1FA9A3CB0019FA34 /* LoadingViewController.swift */; };
 		46F5B0511FA9AD2C0019FA34 /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5B0501FA9AD2C0019FA34 /* NewProjectViewController.swift */; };
+		EE6E12901FC3689600ABECC6 /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6E128F1FC3689600ABECC6 /* Exporter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		46E01E321FB53A3C0086D785 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		46F5B04E1FA9A3CB0019FA34 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		46F5B0501FA9AD2C0019FA34 /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
+		EE6E128F1FC3689600ABECC6 /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 				46E01E301FB53A160086D785 /* PopupViewController.swift */,
 				4698E54E1FA98F1D00DD4FE4 /* DocumentManager.swift */,
 				46BE3E8A1FAAEC8500916A47 /* Log.swift */,
+				EE6E128F1FC3689600ABECC6 /* Exporter.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				46E01E311FB53A160086D785 /* PopupViewController.swift in Sources */,
 				46E01E331FB53A3C0086D785 /* BaseViewController.swift in Sources */,
 				4673EB4B1F9DA5190085358D /* CGRect+ext.swift in Sources */,
+				EE6E12901FC3689600ABECC6 /* Exporter.swift in Sources */,
 				46616E931FA9B067008CD20C /* TagsViewController.swift in Sources */,
 				46F5B0511FA9AD2C0019FA34 /* NewProjectViewController.swift in Sources */,
 				46BE3E891FAAEB6B00916A47 /* UIApplication+ext.swift in Sources */,
