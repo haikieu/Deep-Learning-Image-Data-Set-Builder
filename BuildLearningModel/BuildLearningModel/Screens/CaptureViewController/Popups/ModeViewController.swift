@@ -17,8 +17,10 @@ class ModeViewController : PopupViewController {
     
     weak var delegate : ModeDelegate?
     
+    @IBOutlet weak var heightConstraintOfContainer: NSLayoutConstraint!
     @IBOutlet weak var randomSwitch: UISwitch!
     @IBOutlet weak var segment: UISegmentedControl!
+    @IBOutlet weak var singleAndLoopModeView: UIView!
     @IBOutlet weak var intervalLabel: UILabel!
     
     lazy var tapGesture : UITapGestureRecognizer = {
@@ -46,14 +48,24 @@ class ModeViewController : PopupViewController {
     
     @IBAction func modeChanged(_ sender: Any) {
         if segment.selectedSegmentIndex == 0 {
+            singleAndLoopModeView.isHidden = false
+            
             intervalField.isEnabled = false
             intervalField.isHidden = true
             intervalLabel.isHidden = true
-        } else {
+        } else if segment.selectedSegmentIndex == 1 {
+            singleAndLoopModeView.isHidden = false
+            
             intervalField.isEnabled = true
             intervalField.isHidden = false
             intervalLabel.isHidden = false
+        } else {
+            singleAndLoopModeView.isHidden = true
         }
+    }
+    
+    private func transiteMode() {
+        
     }
     
     @IBOutlet weak var intervalField: UITextField!
